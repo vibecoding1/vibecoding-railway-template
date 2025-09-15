@@ -4,6 +4,7 @@ This is the Railway template for VibeCoding development environments. It provide
 
 ## What This Template Provides
 
+- ✅ **Ultra-Fast Package Management**: Bun for 3-10x faster installs than npm
 - ✅ **Pre-installed Development Stack**: React, Vite, TypeScript, Supabase CLI, Tailwind CSS
 - ✅ **PiloTY MCP Server**: Claude terminal access on port 8080
 - ✅ **Vite Dev Server**: Hot reload development on port 3000
@@ -33,11 +34,12 @@ The template expects these variables to be set by VibeCoding:
 
 ## Deployment Flow
 
-1. **Railway deploys this template** (60 seconds)
+1. **Railway deploys this template** (30-60 seconds with Bun)
 2. **Container starts and clones GitHub repo** (includes .claude folder)
-3. **Installs dependencies** and starts development servers
-4. **Claude can connect via MCP** on port 8080
-5. **User can preview via Vite** on port 3000
+3. **Ultra-fast dependency installation** with Bun (3-10x faster than npm)
+4. **Starts development servers** (Vite + Claude MCP)
+5. **Claude can connect via MCP** on port 8080
+6. **User can preview via Vite** on port 3000
 
 ## Usage
 

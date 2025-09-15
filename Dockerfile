@@ -34,7 +34,7 @@ RUN curl -fsSL https://github.com/supabase/cli/releases/download/v1.110.0/supaba
     chmod +x /usr/local/bin/supabase
 
 # Install PiloTY MCP and dependencies
-RUN pip3 install \
+RUN pip3 install --break-system-packages \
     fastapi \
     uvicorn \
     requests \
