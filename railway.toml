@@ -1,0 +1,31 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+
+[environment]
+PORT = "8080"
+NODE_ENV = "development"
+VITE_HOST = "0.0.0.0"
+VITE_PORT = "3000"
+
+# Railway will inject these automatically when connected to GitHub
+# RAILWAY_GIT_COMMIT_SHA
+# RAILWAY_GIT_BRANCH
+# RAILWAY_GIT_REPO_NAME
+# RAILWAY_GIT_REPO_OWNER
+
+[networking]
+# Expose both Vite dev server and Claude MCP server
+[[networking.ports]]
+port = 3000
+protocol = "http"
+
+[[networking.ports]]
+port = 8080
+protocol = "http" 
