@@ -9,7 +9,7 @@ echo "📁 Project: ${PROJECT_NAME:-'Unnamed'}"
 # Navigate to app directory
 cd /app
 
-# Clone GitHub repository if provided
+# Clone GitHub repository if provided, otherwise create new project
 if [ ! -z "$GITHUB_REPO_URL" ] && [ "$GITHUB_REPO_URL" != "" ]; then
     echo "📥 Cloning GitHub repository..."
     
@@ -27,9 +27,22 @@ if [ ! -z "$GITHUB_REPO_URL" ] && [ "$GITHUB_REPO_URL" != "" ]; then
     # Update from remote (get latest changes)
     git pull origin main || git pull origin master || echo "⚠️ Could not pull latest changes"
 else
-    echo "❌ No GitHub repository URL provided"
-    echo "This template requires GITHUB_REPO_URL environment variable"
-    exit 1
+    echo "📦 No GitHub repository provided, creating new project..."
+    
+    # Create project directory if it doesn't exist
+    if [ ! -d "project" ]; then
+        mkdir project
+    fi
+    cd project
+    
+    # Initialize git repository
+    if [ ! -d ".git" ]; then
+        git init
+        git config user.name "VibeCoding Template"
+        git config user.email "template@vibecoding.com"
+    fi
+    
+    echo "✅ New project directory created"
 fi
 
 # Initialize .claude folder if it doesn't exist
