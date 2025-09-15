@@ -1,4 +1,4 @@
-FROM node:18-ubuntu
+FROM node:18
 
 # Set working directory
 WORKDIR /app
