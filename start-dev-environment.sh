@@ -28,7 +28,7 @@ if [ ! -z "$GITHUB_REPO_URL" ] && [ "$GITHUB_REPO_URL" != "" ]; then
     git pull origin main || git pull origin master || echo "⚠️ Could not pull latest changes"
 else
     echo "📦 No custom repository provided, using VibeCoding template..."
-    GITHUB_REPO_URL="https://github.com/vibecoding1/vibecoding-railway-template"
+    GITHUB_REPO_URL="https://github.com/vibecoding1/react-vite-supabase-template"
     
     # Remove existing project directory if it exists
     if [ -d "project" ]; then
