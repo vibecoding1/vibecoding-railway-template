@@ -18,15 +18,15 @@ RUN apt-get update && apt-get install -y \
 
 # Install global Node.js tools for React+Vite+Supabase stack
 RUN npm install -g \
-    vite@^5.0.0 \
-    @vitejs/plugin-react@^4.0.0 \
-    typescript@^5.0.0 \
-    @supabase/cli@^1.110.0 \
-    tailwindcss@^3.3.0 \
-    eslint@^8.50.0 \
-    prettier@^3.0.0 \
-    @typescript-eslint/parser@^6.0.0 \
-    concurrently@^8.0.0
+    vite \
+    @vitejs/plugin-react \
+    typescript \
+    supabase \
+    tailwindcss \
+    eslint \
+    prettier \
+    @typescript-eslint/parser \
+    concurrently
 
 # Install PiloTY MCP and dependencies
 RUN pip3 install \
