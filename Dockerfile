@@ -1,4 +1,4 @@
-FROM node:18
+FROM oven/bun:1
 
 # Set working directory
 WORKDIR /app
@@ -16,17 +16,22 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Install global Node.js tools for React+Vite+Supabase stack
-RUN npm install -g \
+# Install global tools using Bun (much faster than npm)
+RUN bun install -g \
     vite \
     @vitejs/plugin-react \
     typescript \
-    supabase \
     tailwindcss \
     eslint \
     prettier \
     @typescript-eslint/parser \
     concurrently
+
+# Install Supabase CLI using the official method
+RUN curl -fsSL https://github.com/supabase/cli/releases/download/v1.110.0/supabase_linux_amd64.tar.gz | \
+    tar -xz && \
+    mv supabase /usr/local/bin/supabase && \
+    chmod +x /usr/local/bin/supabase
 
 # Install PiloTY MCP and dependencies
 RUN pip3 install \

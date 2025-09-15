@@ -137,29 +137,29 @@ fi
 
 # Install project dependencies if package.json exists
 if [ -f "package.json" ]; then
-    echo "📦 Installing project dependencies..."
-    npm install
+    echo "📦 Installing project dependencies with Bun (super fast!)..."
+    bun install
 else
-    echo "📦 No package.json found, creating React+Vite+Supabase project..."
-    # Create a basic React+Vite project structure
-    npm create vite@latest . -- --template react-ts
-    npm install
+    echo "📦 No package.json found, creating React+Vite+Supabase project with Bun..."
+    # Create a basic React+Vite project structure using Bun
+    bunx create-vite . --template react-ts
+    bun install
     
     # Add Supabase and common dependencies
-    npm install @supabase/supabase-js @supabase/auth-helpers-react
-    npm install @headlessui/react @heroicons/react
-    npm install react-router-dom @tanstack/react-query
+    bun add @supabase/supabase-js @supabase/auth-helpers-react
+    bun add @headlessui/react @heroicons/react
+    bun add react-router-dom @tanstack/react-query
     
     # Add Tailwind CSS
-    npm install -D tailwindcss postcss autoprefixer
-    npx tailwindcss init -p
+    bun add -D tailwindcss postcss autoprefixer
+    bunx tailwindcss init -p
 fi
 
 # Start the development servers
 echo "🎯 Starting development servers..."
 
-# Start Vite dev server in background
-npm run dev &
+# Start Vite dev server in background using Bun
+bun run dev &
 VITE_PID=$!
 
 # Start PiloTY MCP server
