@@ -153,19 +153,8 @@ if [ -f "package.json" ]; then
     echo "📦 Installing project dependencies with Bun (super fast!)..."
     bun install
 else
-    # echo "📦 No package.json found, creating React+Vite+Supabase project with Bun..."
-    # # Create a basic React+Vite project structure using Bun
-    # bunx create-vite . --template react-ts
-    # bun install
-    
-    # # Add Supabase and common dependencies
-    # bun add @supabase/supabase-js @supabase/auth-helpers-react
-    # bun add @headlessui/react @heroicons/react
-    # bun add react-router-dom @tanstack/react-query
-    
-    # # Add Tailwind CSS
-    # bun add -D tailwindcss postcss autoprefixer
-    # bunx tailwindcss init -p
+    echo "⚠️ No package.json found in cloned repository"
+    echo "The cloned repository should contain a React+Vite+Supabase project"
 fi
 
 # Start the development servers
