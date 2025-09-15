@@ -9,7 +9,7 @@ echo "📁 Project: ${PROJECT_NAME:-'Unnamed'}"
 # Navigate to app directory
 cd /app
 
-# Clone GitHub repository if provided, otherwise create new project
+# Clone GitHub repository if provided
 if [ ! -z "$GITHUB_REPO_URL" ] && [ "$GITHUB_REPO_URL" != "" ]; then
     echo "📥 Cloning GitHub repository..."
     
@@ -27,22 +27,22 @@ if [ ! -z "$GITHUB_REPO_URL" ] && [ "$GITHUB_REPO_URL" != "" ]; then
     # Update from remote (get latest changes)
     git pull origin main || git pull origin master || echo "⚠️ Could not pull latest changes"
 else
-    echo "📦 No GitHub repository provided, creating new project..."
+    echo "📦 No custom repository provided, using VibeCoding template..."
+    GITHUB_REPO_URL="https://github.com/vibecoding1/vibecoding-railway-template"
     
-    # Create project directory if it doesn't exist
-    if [ ! -d "project" ]; then
-        mkdir project
+    # Remove existing project directory if it exists
+    if [ -d "project" ]; then
+        rm -rf project
     fi
+    
+    # Clone the VibeCoding template repository
+    git clone "$GITHUB_REPO_URL" project
     cd project
     
-    # Initialize git repository
-    if [ ! -d ".git" ]; then
-        git init
-        git config user.name "VibeCoding Template"
-        git config user.email "template@vibecoding.com"
-    fi
+    echo "✅ VibeCoding template cloned successfully"
     
-    echo "✅ New project directory created"
+    # Update from remote (get latest changes)
+    git pull origin main || git pull origin develop || echo "⚠️ Could not pull latest changes"
 fi
 
 # Initialize .claude folder if it doesn't exist
@@ -153,19 +153,19 @@ if [ -f "package.json" ]; then
     echo "📦 Installing project dependencies with Bun (super fast!)..."
     bun install
 else
-    echo "📦 No package.json found, creating React+Vite+Supabase project with Bun..."
-    # Create a basic React+Vite project structure using Bun
-    bunx create-vite . --template react-ts
-    bun install
+    # echo "📦 No package.json found, creating React+Vite+Supabase project with Bun..."
+    # # Create a basic React+Vite project structure using Bun
+    # bunx create-vite . --template react-ts
+    # bun install
     
-    # Add Supabase and common dependencies
-    bun add @supabase/supabase-js @supabase/auth-helpers-react
-    bun add @headlessui/react @heroicons/react
-    bun add react-router-dom @tanstack/react-query
+    # # Add Supabase and common dependencies
+    # bun add @supabase/supabase-js @supabase/auth-helpers-react
+    # bun add @headlessui/react @heroicons/react
+    # bun add react-router-dom @tanstack/react-query
     
-    # Add Tailwind CSS
-    bun add -D tailwindcss postcss autoprefixer
-    bunx tailwindcss init -p
+    # # Add Tailwind CSS
+    # bun add -D tailwindcss postcss autoprefixer
+    # bunx tailwindcss init -p
 fi
 
 # Start the development servers
